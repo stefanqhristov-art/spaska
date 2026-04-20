@@ -966,6 +966,75 @@
     .ps-box { padding: 32px 24px; }
   }
 
+  /* ─── REGISTRATION FORM ─── */
+  .reg-form-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .reg-form {
+    display: grid;
+    gap: 16px;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-field label {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .form-field input {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 4px;
+    padding: 14px 18px;
+    color: var(--white);
+    font-size: 1rem;
+    font-family: 'Lato', sans-serif;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    width: 100%;
+  }
+
+  .form-field input::placeholder { color: rgba(255,255,255,0.3); }
+
+  .form-field input:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .form-field input:focus::placeholder { color: rgba(255,255,255,0.15); }
+
+  /* ─── THANK YOU BOX ─── */
+  .thank-you-box {
+    max-width: 480px;
+    margin: 0 auto;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 12px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+
+  .ty-icon { font-size: 3rem; margin-bottom: 16px; }
+
+  .thank-you-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+  }
+
+  .thank-you-box p { color: rgba(255,255,255,0.75); font-size: 1.05rem; }
+
   /* ─── STICKY CTA BAR ─── */
   .sticky-bar {
     position: fixed;
@@ -1214,10 +1283,7 @@
   <div class="container-wide">
     <div class="about-inner">
       <div class="about-photo fade-in">
-        <div class="photo-frame">
-          <span class="photo-frame-icon">🌿</span>
-          <span>Спаска Атанасова</span>
-        </div>
+        <img src="spaska.jpg" alt="Спаска Атанасова" style="width:100%;border-radius:8px;border:2px solid rgba(201,168,76,0.3);display:block;object-fit:cover;aspect-ratio:3/4;">
         <div class="photo-stat">
           <span class="num">2000+</span>
           <span class="label">часа опит на живо в полето</span>
@@ -1359,22 +1425,37 @@
       </div>
     </div>
 
-    <div class="cta-steps fade-in">
-      <p><span>1.</span> Изпрати ми думата <strong style="color:var(--gold-light);">"ИСКАМ"</strong> на лично съобщение</p>
-      <p><span>2.</span> Или се обади директно на телефона</p>
-      <p><span>3.</span> Потвърди участието си и запази място</p>
+    <!-- FORM -->
+    <div id="formWrap" class="reg-form-wrap fade-in">
+      <p style="color:rgba(255,255,255,0.6);margin-bottom:24px;">Попълни формата и ще се свържем с теб за потвърждение.</p>
+      <form id="regForm" class="reg-form">
+        <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY">
+        <input type="hidden" name="subject" value="Ново записване — Семейни Констелации 25 Април">
+        <input type="hidden" name="from_name" value="Спаска — Семейни Констелации">
+        <div class="form-field">
+          <label for="fname">Вашето име *</label>
+          <input type="text" id="fname" name="name" placeholder="Въведете вашето ime" required>
+        </div>
+        <div class="form-field">
+          <label for="fphone">Телефон за връзка *</label>
+          <input type="tel" id="fphone" name="phone" placeholder="0888 123 456" required>
+        </div>
+        <button type="submit" class="cta-button" id="submitBtn" style="width:100%;border:none;cursor:pointer;">
+          Запази своето място →
+        </button>
+        <p id="formError" style="color:#ff6b6b;margin-top:12px;display:none;">Нещо се обърка. Опитай отново или се обади на 0886 607 774.</p>
+      </form>
     </div>
 
-    <a href="tel:+359886607774" class="cta-button fade-in">
-      📞 Обади се: 0886 607 774
-    </a>
-
-    <div class="cta-phone fade-in" style="margin-top:24px;">
-      или изпрати съобщение с думата <strong style="color:var(--gold-light);">"ИСКАМ"</strong><br>
-      на <a href="tel:+359886607774">Спаска Атанасова — 0886 607 774</a>
+    <!-- THANK YOU (hidden until submit) -->
+    <div id="thankYou" class="thank-you-box" style="display:none;">
+      <div class="ty-icon">🎉</div>
+      <h3>Благодарим ти!</h3>
+      <p>Записването ти е получено. Спаска ще се свърже с теб скоро за потвърждение.</p>
+      <p style="margin-top:12px; color:rgba(255,255,255,0.5); font-size:0.9rem;">Въпроси? Обади се: <a href="tel:+359886607774" style="color:var(--gold-light);">0886 607 774</a></p>
     </div>
 
-    <div class="urgency fade-in">
+    <div class="urgency fade-in" style="margin-top:28px;">
       ⚠️ Местата се запълват — не чакай да се запишеш
     </div>
   </div>
@@ -1389,7 +1470,7 @@
       <br>
       <p style="font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--dark); font-style:italic;">Вашите корени са вашата сила. Нека заедно ги превърнем в крила! 🦋</p>
       <br>
-      <p>Напиши ми думата <strong>"ИСКАМ"</strong> на лично, за да се включиш.</p>
+      <p>Попълни формата по-горе и запази своето място.</p>
     </div>
   </div>
 </section>
@@ -1440,6 +1521,40 @@
     if (window.scrollY > 600) stickyBar.classList.add('show');
     else stickyBar.classList.remove('show');
   });
+
+  // Form submission via Web3Forms
+  const regForm = document.getElementById('regForm');
+  if (regForm) {
+    regForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const errEl = document.getElementById('formError');
+      btn.textContent = 'Изпращане...';
+      btn.disabled = true;
+      errEl.style.display = 'none';
+
+      const data = new FormData(regForm);
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: data
+        });
+        const json = await res.json();
+        if (json.success) {
+          document.getElementById('formWrap').style.display = 'none';
+          const ty = document.getElementById('thankYou');
+          ty.style.display = 'block';
+          ty.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error('failed');
+        }
+      } catch {
+        btn.textContent = 'Запази своето място →';
+        btn.disabled = false;
+        errEl.style.display = 'block';
+      }
+    });
+  }
 
   // Smooth scroll for anchors
   document.querySelectorAll('a[href^="#"]').forEach(a => {
